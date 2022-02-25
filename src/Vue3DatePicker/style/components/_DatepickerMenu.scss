@@ -104,3 +104,45 @@
 .dp__menu_content_wrapper {
   display: flex;
 }
+
+.default-container {
+  width: 60px;
+  text-align: right;
+  margin-left: 5px;
+}
+
+.default-btn {
+  font-family: Roboto, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: normal;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  height: 20px;
+  padding: 1px 5px;
+  border-radius: 6px;
+  text-transform: none;
+  color: rgb(126, 110, 133);
+  background-color: rgb(235, 231, 235);
+}
+
+.hidden {
+  display: none;
+}
+
+.set-default-link {
+  font-size: 11px;
+  color: rgb(126, 110, 133);
+}
+
+.preset-default-hover {
+  &:hover {
+    font-size: 12px;
+    text-decoration: underline;
+    color: #000000;
+  }
+
+}

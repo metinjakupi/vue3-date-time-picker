@@ -21,9 +21,23 @@
                     v-for="(preset, i) in presetRanges"
                     :key="i"
                     class="dp__preset_range"
+                    style="display: flex"
+                    :class="preset.default ? 'dp__preset_range_default' : null"
                     @click="presetDateRange(preset.range)"
+                    @mouseover="hoverPresetRange(i, 'over')"
+                    @mouseleave="hoverPresetRange(i, 'out')"
                 >
-                    {{ preset.label }}
+                    {{ preset.label }} -
+                    <div class="default-container">
+                        <a
+                            :id="`preset-${i}`"
+                            v-if="!preset.default"
+                            class="set-default-link hidden preset-default-hover"
+                            @click="setDefaultPreset(i)"
+                            ><span> Set default</span></a
+                        >
+                        <a v-else class="default-btn" style="font-size: 10px"><span> Default</span></a>
+                    </div>
                 </div>
             </div>
             <div class="dp__instance_calendar" ref="calendarWrapperRef" role="document">
@@ -551,6 +565,23 @@
                 handleFlow();
             }
         }
+    };
+
+    const hoverPresetRange = (value: any, type: string) => {
+        if (document.getElementById(`preset-${value}`)) {
+            if (type === 'over') {
+                document.getElementById(`preset-${value}`).classList.remove('hidden');
+            }
+            if (type === 'out') {
+                document.getElementById(`preset-${value}`).classList.add('hidden');
+            }
+        }
+    };
+
+    const setDefaultPreset = (index: any) => {
+        props.presetRanges.forEach((preset: any, i) => {
+            preset.default = i === index;
+        });
     };
 
     const handleFlow = (): void => {
